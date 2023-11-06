@@ -61,7 +61,7 @@ app.use(
   })
 );
 
-const storage = new GridFsStorage({
+const storage2 = new GridFsStorage({
   url: mongouri,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
@@ -75,13 +75,34 @@ const storage = new GridFsStorage({
   },
 });
 
-const upload = multer({
-  storage,
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads/announcments");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "application/pdf") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("Only .pdf format allowed!"));
+    }
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 10,
+  },
+});
 const itemSchema = {
   name_event: String,
   date_event: String,
+  pdf_name: String,
+  pdf_path: String,
 };
 
 const Item = mongoose.model("Item", itemSchema);
@@ -89,15 +110,19 @@ const Item = mongoose.model("Item", itemSchema);
 app.post("/upload", upload.single("file"), (req, res) => {
   const name = req.body.name;
   const date = req.body.date;
+  const pdfName = req.file.filename;
+  const pdfPath = req.file.path;
 
   const item1 = new Item({
     name_event: name,
     date_event: date,
+    pdf_name: pdfName,
+    pdf_path: pdfPath,
   });
 
   item1.save();
 
-  res.status(200).render("file_uploaded_succ");
+  res.render("file_uploaded_succ");
 });
 
 app.get("/pdf/:filename", (req, res) => {
@@ -117,7 +142,7 @@ app.get("/pdf/:filename", (req, res) => {
 
 let session;
 
-app.get("/pdfFiles", (req, res) => {
+app.get("/announcement", (req, res) => {
   try {
     bucket.find().toArray(async (err, files) => {
       let arr = [];
@@ -147,7 +172,7 @@ app.post("/delete/:id", (req, res) => {
   bucket.delete(mongoose.Types.ObjectId(post_id), (err, files) => {
     if (!err) {
       console.log("Successfully deleted document");
-      res.redirect("/pdfFiles");
+      res.redirect("/announcement");
     } else {
       console.log(err);
       return res.status(404).json({ err: err });
@@ -159,7 +184,10 @@ app.post("/submit_pass", (req, res) => {
   let password = req.body.pass;
   let email_id = req.body.email;
 
-  if (email_id == process.env.MAIL_ID && password == process.env.PASS) {
+  if (
+    email_id == process.env.TEMPLE_MAIL_ID &&
+    password == process.env.TEMPLE_MAIL_PASS
+  ) {
     session = req.session;
     session.userid = email_id;
     res.redirect("/");
@@ -188,36 +216,63 @@ app.get("/donation", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-  var output = `You have a new contact request
-          contact Details
-          Name : ${req.body.name}
-          Email : ${req.body.email}
-          Phone : ${req.body.phone}
-          Message
-         ${req.body.message}`;
+  let output = `
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+              }
+              .container {
+                width: 80%;
+                margin: auto;
+                background-color: #f7f7f7;
+                padding: 20px;
+                border-radius: 5px;
+              }
+              .message {
+                margin-top: 20px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h2>You have a new contact request</h2>
+              <p><strong>Name:</strong> ${req.body.name}</p>
+              <p><strong>Email:</strong> ${req.body.email}</p>
+              <p><strong>Phone:</strong> ${req.body.phone}</p>
+              <div class="message">
+                <h3>Message</h3>
+                <p>${req.body.message}</p>
+              </div>
+            </div>
+          </body>
+        </html>
+        `;
 
   var transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: process.env.MAIL_HOST,
     port: 465,
     secure: true,
-    // service: 'gmail',
+
     auth: {
-      user: process.env.MAIL_IDE,
-      pass: process.env.PASSWORD,
+      user: process.env.NODEMAIL_USER,
+      pass: process.env.NODEMAIL_PASS,
     },
   });
 
   var mailOptions = {
     from: req.body.email,
-    to: "ftct.gsfc@gmail.com",
-    subject: `Message from ${req.body.name}`,
-    text: output,
+    to: process.env.TEMPLE_MAIL_ID,
+    subject: `Message from ${req.body.name} regarding temple query`,
+    html: `${output}`,
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.log(err);
     } else {
+      console.log("Email sent successfully");
       res.render("mail_success");
     }
   });
