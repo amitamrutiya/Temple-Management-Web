@@ -14,16 +14,26 @@
     <div class="frame">
         <div class="center">
             <div class="title">
-                <h1>Drop file to upload</h1>
+                <h2>Enter your event details :</h2>
                 <form action="/upload" method="POST" enctype="multipart/form-data">
-                    <input name="name" type="text" value="Enter event name">
-                    <input name="date" type="date">
-                    <img class="img" src="img/upload.jpg" alt="">
-                    <input type="file" class="choose" name="file">
+                    <label for="name">Name:</label>
+                    <input class="nametext" name="name" type="text" placeholder="Enter Event Name" required
+                        oninvalid="this.setCustomValidity('Please Enter Event Name')"
+                        oninput="this.setCustomValidity('')">
+
+                    <label for="date">Date:</label>
+                    <input class="datetext" name="date" type="date" required
+                        oninvalid="this.setCustomValidity('Please Enter Date')" oninput="this.setCustomValidity('')">
+
+                    <label for="file">Announcments File:</label>
+                    <input type="file" class="choose" name="file" required
+                        oninvalid="this.setCustomValidity('Please Choose a File')" oninput="this.setCustomValidity('')">
+
                     <button class="btn" type="submit">Upload</button>
                 </form>
             </div>
         </div>
+    </div>
     </div>
 
     <div id="loader-wrapper">

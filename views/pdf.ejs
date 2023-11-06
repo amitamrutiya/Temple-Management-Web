@@ -174,40 +174,38 @@
     </form>
 
     <% for(let i=0;i<files.length;i++){ %>
-        <% if(founded[i]) { %>
-            <div class="container">
-                <div class="box">
-                    <div class="content">
-                        <h2>
-                            <%=founded[i].name_event%>
-                        </h2>
-                        <h3>
-                            <%=founded[i].date_event%>
-                        </h3>
-                        <a class="butt" href="pdf/<%=files[i].filename%>">
-                            <img style="font-size: 20px;"src="img/icon.png" id="i">
-                                <span>Open PDF</span>
-                        </a>
-                        <form method="post" action="/delete/<%= files[i]._id %>_<%=founded[i]._id%>">
-                            <% if(islogin){ %>
-                                <button class="btn" type="submit"><i class="fa-solid fa-trash"></i></button>
-                                <% } %>
-                        </form>
-                    </div>
+        <div class="container">
+            <div class="box">
+                <div class="content">
+                    <h2>
+                        <%=files[i].name_event%>
+                    </h2>
+                    <h3>
+                        <%=files[i].date_event%>
+                    </h3>
+                    <a class="butt" href="uploads/announcments/<%=files[i].pdf_name%>" target="_blank">
+                        <img style="font-size: 20px;" src="img/icon.png" id="i">
+                        <span>Open PDF</span>
+                    </a>
+                    <form method="post" action="/delete/<%= files[i]._id %>">
+                        <% if(islogin){ %>
+                            <button class="btn" type="submit"><i class="fa-solid fa-trash"></i></button>
+                            <% } %>
+                    </form>
                 </div>
             </div>
-            <% } %>
-                <% } %>
-                    <div id="loader-wrapper">
-                        <div id="loader"></div>
-                        <div class="loader-section section-left"></div>
-                        <div class="loader-section section-right"></div>
-                    </div>
-                    <script>
-                        window.onload = function () {
-                            document.body.classList.add('loaded');
-                        };
-                    </script>
+        </div>
+        <% } %>
+            <div id="loader-wrapper">
+                <div id="loader"></div>
+                <div class="loader-section section-left"></div>
+                <div class="loader-section section-right"></div>
+            </div>
+            <script>
+                window.onload = function () {
+                    document.body.classList.add('loaded');
+                };
+            </script>
 </body>
 
 </html>

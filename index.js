@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 const multer = require("multer");
-const { GridFsStorage } = require("multer-gridfs-storage");
 
 //Middlewares
 app.use(express.static("public"));
@@ -36,22 +35,14 @@ app.use(cookieParser());
 const mongouri = process.env.MONGO_URI;
 
 try {
-  mongoose.connect(mongouri);
+  mongoose.connect(mongouri).then(() => {
+    console.log("Connected to MongoDB");
+  });
 } catch (error) {
   handleError(error);
 }
 process.on("unhandledRejection", (error) => {
   console.log("unhandledRejection", error.message);
-});
-
-//creating bucket
-var bucket;
-mongoose.connection.on("connected", () => {
-  var client = mongoose.connections[0].client;
-  var db = mongoose.connections[0].db;
-  bucket = new mongoose.mongo.GridFSBucket(db, {
-    bucketName: "newBucket",
-  });
 });
 
 app.use(express.json());
@@ -61,26 +52,13 @@ app.use(
   })
 );
 
-const storage2 = new GridFsStorage({
-  url: mongouri,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      const filename = file.originalname;
-      const fileInfo = {
-        filename: filename,
-        bucketName: "newBucket",
-      };
-      resolve(fileInfo);
-    });
-  },
-});
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/uploads/announcments");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    const name = file.originalname.replace(/\s/g, "_");
+    cb(null, Date.now() + "-" + name);
   },
 });
 
@@ -98,6 +76,7 @@ const upload = multer({
     fileSize: 1024 * 1024 * 10,
   },
 });
+
 const itemSchema = {
   name_event: String,
   date_event: String,
@@ -106,18 +85,12 @@ const itemSchema = {
 };
 
 const Item = mongoose.model("Item", itemSchema);
-
 app.post("/upload", upload.single("file"), (req, res) => {
-  const name = req.body.name;
-  const date = req.body.date;
-  const pdfName = req.file.filename;
-  const pdfPath = req.file.path;
-
   const item1 = new Item({
-    name_event: name,
-    date_event: date,
-    pdf_name: pdfName,
-    pdf_path: pdfPath,
+    name_event: req.body.name,
+    date_event: req.body.date,
+    pdf_name: req.file.filename,
+    pdf_path: req.file.path,
   });
 
   item1.save();
@@ -125,62 +98,37 @@ app.post("/upload", upload.single("file"), (req, res) => {
   res.render("file_uploaded_succ");
 });
 
-app.get("/pdf/:filename", (req, res) => {
-  const file = bucket
-    .find({
-      filename: req.params.filename,
-    })
-    .toArray((err, files) => {
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: "no files exist",
-        });
-      }
-      bucket.openDownloadStreamByName(req.params.filename).pipe(res);
-    });
-});
-
 let session;
 
 app.get("/announcement", (req, res) => {
-  try {
-    bucket.find().toArray(async (err, files) => {
-      let arr = [];
-      arr = await Item.find({});
+  Item.find({})
+    .then((docs) => {
       session = req.session;
       if (session.userid) {
-        res.render("pdf", { files: files, islogin: true, founded: arr });
+        res.render("pdf", { files: docs, islogin: true });
       } else {
-        res.render("pdf", { files: files, islogin: false, founded: arr });
+        res.render("pdf", { files: docs, islogin: false });
       }
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 app.post("/delete/:id", (req, res) => {
-  const [post_id, file_id] = req.params.id.split("_");
+  const [file_id] = req.params.id.split("_");
 
   Item.findByIdAndDelete(file_id, (err, docs) => {
     if (err) {
       console.log(err);
-      // return res.status(404).json({ err: err });
-    }
-  });
-
-  bucket.delete(mongoose.Types.ObjectId(post_id), (err, files) => {
-    if (!err) {
+    } else {
       console.log("Successfully deleted document");
       res.redirect("/announcement");
-    } else {
-      console.log(err);
-      return res.status(404).json({ err: err });
     }
   });
 });
 
-app.post("/submit_pass", (req, res) => {
+app.post("/login", (req, res) => {
   let password = req.body.pass;
   let email_id = req.body.email;
 
@@ -215,7 +163,114 @@ app.get("/donation", function (req, res) {
   res.render("donation");
 });
 
+app.get("/booking", function (req, res) {
+  res.render("booking");
+});
+app.post("/booking", function (req, res) {
+  const poojaBookingSchema = {
+    name: String,
+    email: String,
+    phoneNumber: String,
+    date: String,
+    time: String,
+    pooja: String,
+    poojaDescription: String,
+  };
+
+  const PoojaItem = mongoose.model("PoojaItem", poojaBookingSchema);
+
+  const poojaItem = new PoojaItem({
+    name: req.body.name,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    date: req.body.date,
+    time: req.body.time,
+    pooja: req.body.pooja,
+    poojaDescription: req.body.description,
+  });
+  poojaItem.save();
+
+  let output = `
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+              }
+              .container {
+                width: 80%;
+                margin: auto;
+                background-color: #f7f7f7;
+                padding: 20px;
+                border-radius: 5px;
+              }
+              .message {
+                margin-top: 20px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h2>You have a new request for pooja</h2>
+              <p><strong>Name:</strong> ${req.body.name}</p>
+              <p><strong>Email:</strong> ${req.body.email}</p>
+              <p><strong>Phone Number:</strong> ${req.body.phoneNumber}</p>
+              <p><strong>Date:</strong> ${req.body.date}</p>
+              <p><strong>Time:</strong> ${req.body.time}</p>
+              <p><strong>Pooja:</strong> ${req.body.pooja}</p>
+              <p><strong>Pooja Description:</strong> ${req.body.description}</p>
+            </div>
+          </body>
+        </html>
+        `;
+
+  var transporter = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: 465,
+    secure: true,
+
+    auth: {
+      user: process.env.NODEMAIL_USER,
+      pass: process.env.NODEMAIL_PASS,
+    },
+  });
+
+  var mailOptions = {
+    from: req.body.email,
+    to: process.env.TEMPLE_MAIL_ID,
+    subject: `Message from ${req.body.name} regarding Pooja Booking`,
+    html: `${output}`,
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Pooja Booking Email sent successfully");
+      res.render("booking_succ");
+    }
+  });
+});
+
 app.post("/", function (req, res) {
+  const contactSchema = {
+    name: String,
+    email: String,
+    phone: String,
+    message: String,
+  };
+
+  const Contact = mongoose.model("Contact", contactSchema);
+
+  const contact = new Contact({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    message: req.body.message,
+  });
+
+  contact.save();
+
   let output = `
         <html>
           <head>

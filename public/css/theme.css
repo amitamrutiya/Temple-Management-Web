@@ -1,24 +1,9 @@
-/*
-
-November Template
-
-http://www.templatemo.com/tm-473-november
-
-*/
-
-/* --** Reset CSS **-- */
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-
-/* .mann {
-  position: relative;
-  bottom: 17px;
-  right: 54px;
-} */
 
 html,
 body,
@@ -171,7 +156,7 @@ input {
 }
 
 a {
-  color: #F06;
+  color: #f06;
 }
 
 a:hover {
@@ -323,7 +308,7 @@ header .site-logo h1 {
 header .site-logo h1 a {
   font-size: 15px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
@@ -371,8 +356,6 @@ header.smaller .site-logo h1 a {
   z-index: 1;
 }
 
-
-
 .dropdown-content {
   display: none;
   /* position: absolute; */
@@ -408,7 +391,6 @@ header.smaller .site-logo h1 a {
 
 .show {
   display: flex;
-
 }
 
 /* //////////////////////// */
@@ -441,7 +423,7 @@ header.smaller .site-logo h1 a {
   padding: 40px 36px;
   font-size: 16px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   text-decoration: none;
   display: block;
@@ -452,8 +434,21 @@ header.smaller .site-logo h1 a {
 .Navigation li span {
   border-bottom: solid 5px #ff9000;
   background: rgba(56, 87, 122, 1);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(56, 87, 122, 1)), color-stop(0%, rgba(56, 87, 122, 1)), color-stop(0%, rgba(56, 87, 122, 1)), color-stop(100%, rgba(44, 68, 94, 1)));
-  background: linear-gradient(to bottom, rgba(56, 87, 122, 1) 0%, rgba(56, 87, 122, 1) 0%, rgba(56, 87, 122, 1) 0%, rgba(44, 68, 94, 1) 100%);
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(56, 87, 122, 1)),
+    color-stop(0%, rgba(56, 87, 122, 1)),
+    color-stop(0%, rgba(56, 87, 122, 1)),
+    color-stop(100%, rgba(44, 68, 94, 1))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(56, 87, 122, 1) 0%,
+    rgba(56, 87, 122, 1) 0%,
+    rgba(56, 87, 122, 1) 0%,
+    rgba(44, 68, 94, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38577a', endColorstr='#2c445e', GradientType=0);
   width: 100%;
   height: 100%;
@@ -541,14 +536,14 @@ header.smaller .dropdown-content {
 
 .Banner_sec .leftside {
   padding: 92px 0px 0px 0px;
-  width: 28.90%;
+  width: 28.9%;
   float: left;
 }
 
 .Banner_sec .leftside h3 {
   font-size: 36px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   margin: 0px;
@@ -557,7 +552,7 @@ header.smaller .dropdown-content {
 
 .Banner_sec .leftside h3 span {
   color: #ff9000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   display: block;
 }
@@ -566,7 +561,7 @@ header.smaller .dropdown-content {
   padding: 16px 0px 26px 0px;
   font-size: 16px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   font-style: italic;
   margin: 0px;
@@ -578,7 +573,7 @@ header.smaller .dropdown-content {
   padding: 11px 16px;
   font-size: 14px;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
@@ -633,7 +628,7 @@ header.smaller .dropdown-content {
   font-size: 18px;
   color: #fff;
   margin: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   text-align: right;
@@ -696,11 +691,21 @@ header.smaller .dropdown-content {
   height: 74px;
   width: 100%;
   background: rgba(249, 250, 251, 1);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(249, 250, 251, 1)), color-stop(0%, rgba(249, 250, 251, 1)), color-stop(100%, rgba(225, 228, 231, 1)));
-  background: linear-gradient(to bottom, rgba(249, 250, 251, 1) 0%, rgba(249, 250, 251, 1) 0%, rgba(225, 228, 231, 1) 100%);
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(249, 250, 251, 1)),
+    color-stop(0%, rgba(249, 250, 251, 1)),
+    color-stop(100%, rgba(225, 228, 231, 1))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(249, 250, 251, 1) 0%,
+    rgba(249, 250, 251, 1) 0%,
+    rgba(225, 228, 231, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9fafb', endColorstr='#e1e4e7', GradientType=0);
 }
-
 
 /* <<< Container >>> */
 #Container {
@@ -725,7 +730,7 @@ header.smaller .dropdown-content {
 .About_sec h2 {
   font-size: 56px;
   color: #000;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 400;
   margin: 0px;
   text-transform: uppercase;
@@ -738,7 +743,7 @@ header.smaller .dropdown-content {
   font-size: 14px;
   color: #979797;
   margin: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 25px;
   font-weight: 400;
 }
@@ -772,7 +777,7 @@ header.smaller .dropdown-content {
   padding: 14px 40px 13px 40px;
   font-size: 18px;
   color: #989898;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
@@ -836,7 +841,7 @@ header.smaller .dropdown-content {
   color: #000;
   margin: 0px;
   text-transform: uppercase;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   line-height: 29px;
 }
 
@@ -852,7 +857,7 @@ header.smaller .dropdown-content {
   font-size: 14px;
   color: #979797;
   margin: 0px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   line-height: 25px;
 }
 
@@ -860,7 +865,6 @@ header.smaller .dropdown-content {
   font-size: 16px;
   color: #08c2ff;
 }
-
 
 /* <<< Services Section >>> */
 .Services_sec {
@@ -881,7 +885,7 @@ header.smaller .dropdown-content {
 .Services_sec h2 {
   font-size: 56px;
   color: #fff;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 400;
   margin: 0px;
   text-transform: uppercase;
@@ -893,7 +897,7 @@ header.smaller .dropdown-content {
   font-size: 14px;
   color: #d8dfe5;
   margin: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 25px;
   font-weight: 400;
 }
@@ -913,7 +917,7 @@ header.smaller .dropdown-content {
 
 .Services_sec .Serviceside ul {
   list-style: none;
-  margin: 0px
+  margin: 0px;
 }
 
 .Services_sec .Serviceside li {
@@ -927,7 +931,6 @@ header.smaller .dropdown-content {
 .Services_sec .Serviceside li:last-child {
   margin-right: 0px;
 }
-
 
 /* <<< Pricing Section >>> */
 .Pricing_sec {
@@ -947,7 +950,7 @@ header.smaller .dropdown-content {
 .Pricing_sec h2 {
   font-size: 57px;
   color: #000;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 400;
   margin: 0px;
   text-transform: uppercase;
@@ -959,7 +962,7 @@ header.smaller .dropdown-content {
   font-size: 14px;
   color: #8f8f8f;
   margin: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 25px;
   font-weight: 400;
 }
@@ -1002,10 +1005,9 @@ header.smaller .dropdown-content {
 
 .Pricingside {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 
-/* <<< Contact Section >>> */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 
 * {
@@ -1020,9 +1022,7 @@ textarea {
   font-family: "Poppins", sans-serif;
 }
 
-
 .container {
-  /* background-image: url('public/img/Services_1-bg'); */
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -1034,16 +1034,8 @@ textarea {
 }
 
 #contact {
-  /* background-color: red; */
-  /* height: 100%; */
-  /* background: url('../img/Services_1-bg.jpg') top center no-repeat */
-
-  /* background: url('https://madec.edu.au/wp-content/uploads/2022/02/938ba925943764901f2c2889ea835d42-scaled.jpg') no-repeat 0 0; */
-  /* background: url('https://xtentertainment.com/wp-content/uploads/2015/03/Contact-us-Background.jpg') no-repeat 0 0; */
-  background-image: url(../img/bg-3.jpg);
   background-repeat: no-repeat;
-  background-position: center center ;
-  /* background-color: #c8e8e9; */
+  background-position: center center;
   height: 100%;
   width: 100%;
 }
@@ -1403,15 +1395,6 @@ textarea.input {
   }
 }
 
-/* .Contact_sec { width: 100%; overflow: hidden; }
-	.Contact_sec .Contactside { background: url(../img/Contact-bg.jpg) top center no-repeat; background-size: cover; overflow: hidden;}
-	.Contact_sec .Center { padding: 115px 0px 77px 0px;  max-width: 1100px; margin: auto; overflow: hidden; text-align: center; }
-	.Contact_sec h2 { font-size: 57px; color: #fff; font-family: 'Oswald', sans-serif; font-weight: 400; margin: 0px; text-transform: uppercase; line-height: 60px;}
-	.Contact_sec p { padding: 24px 0px 35px 0px; font-size: 14px; color: #ebebeb; margin: 0px; font-family: 'Open Sans', sans-serif; line-height: 25px; font-weight: 400; }
-	.Contact_sec .Line { border: solid 1px #ff9408; height: 2px; width: 252px; margin: auto; }
-	.Contact_sec .Pricingside { padding: 70px 0px 10px 0px; width: 100%; overflow: hidden; text-align: initial; } */
-
-/* <<< Map >>> */
 .Map {
   position: relative;
   width: 100%;
@@ -1421,31 +1404,6 @@ textarea.input {
   height: 300px;
 }
 
-/* <<< Get Section >>> */
-/*.Get_sec { width: 100%; overflow: hidden; background: url(../img/Get-bg.jpg) top center no-repeat; background-size: cover; }
-		.Get_sec .Mid { padding: 76px 0px 95px 0px; max-width: 1100px; margin: auto; overflow: hidden; }
-		.Get_sec .Leftside { width: 48.2%; float: left; }
-		.Get_sec .Leftside fieldset { padding: 0px; margin: 0px; }
-		.Get_sec .Leftside p { padding: 0px; margin: 0px 0px 25px 0px;  }
-		.Get_sec .Leftside input.field { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424;
-		-o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; }
-		.Get_sec .Leftside input:focus { outline: none;}
-		.Get_sec .Leftside textarea { padding: 18px 20px 17px 20px; font-size: 14px; color: #979797; font-family: 'Open Sans', sans-serif; font-weight: 400; border: 0px; width: 100%; height: 156px; resize:none; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424; -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; }
-		.Get_sec .Leftside textarea:focus { outline: none;}
-		.Get_sec .Leftside .button { padding: 16px 0px 17px 0px; margin-top: -3px; font-size: 14px; color: #e9ecee; font-family: 'Open Sans', sans-serif; font-weight: 700; text-align: center; background: #e2850a; border: 0px; text-transform:uppercase; width: 100%; cursor: pointer; box-shadow: 0px 2px 6px 0px #242424; -webkit-box-shadow: 0px 2px 6px 0px #242424; -moz-box-shadow: 0px 2px 6px 0px #242424; -o-box-shadow: 0px 2px 6px 0px #242424; border-radius: 0px; transition: all 0.3s ease;}
-		.Get_sec .Leftside .button:hover { background: #2d2d2d; color: #fff;}
-		.Get_sec .Rightside { padding-top: 12px; width: 48.18%; float: right;}
-		.Get_sec .Rightside h3 { padding-bottom: 44px; font-size: 46px; color: #f88e04; font-family: 'Oswald', sans-serif; font-weight: 400; margin: 0px; text-transform:uppercase; line-height: 46px; }
-		.Get_sec .Rightside address { padding: 0px 0px 27px 65px; margin-left: 3px; font-size: 14px; color: #ebedf1; font-family: 'Open Sans', sans-serif; font-weight: 400; font-style: normal; background: url(../img/location-icn.png) left 4px no-repeat; line-height: 24px;  }
-		.Get_sec .Rightside address.Number { background: url(../img/phone-icn.png) left 5px no-repeat; }
-		.Get_sec .Rightside address.Email { margin-left: 4px; background: url(../img/mail-icn.png) left 0px no-repeat; }
-		.Get_sec .Rightside address.Email a { text-decoration: none; color: #ebedf1; }
-		.Get_sec .Rightside address.Email a:Hover { color: #f88e04; }
-		.Get_sec .Rightside ul { list-style: none; margin: 0px; padding: 27px 0px 0px 3px; }
-		.Get_sec .Rightside li { float: left; padding: 0px; margin: 0px  22px 0px 0px; }
-		.Get_sec .Rightside li a { text-decoration: none; }
-*/
-/* <<< footer >>> */
 footer {
   overflow: hidden;
   width: 100%;
@@ -1454,16 +1412,16 @@ footer {
 }
 
 footer .Cntr {
+  background-color: #333;
   padding: 28px 0px;
-  max-width: 1100px;
   margin: auto;
 }
 
 footer .Cntr p {
   padding: 0px;
   font-size: 13px;
-  color: black;
-  font-family: 'Open Sans';
+  color: wheat;
+  font-family: "Open Sans";
   margin: 0px;
 }
 
@@ -1476,8 +1434,6 @@ footer .Cntr a:hover {
   color: #fff;
 }
 
-/* ///////////////// image css /////////////////////// */
-
 .containeer {
   position: relative;
   min-height: 100vh;
@@ -1485,7 +1441,6 @@ footer .Cntr a:hover {
 }
 
 .containeer h1 {
-
   font-size: 60px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
@@ -1504,12 +1459,11 @@ footer .Cntr a:hover {
   padding: 10px;
 }
 
-
 .containeer .image-container .image {
   height: 250px;
   width: 350px;
   border: 10px solid #fff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
 }
@@ -1518,9 +1472,8 @@ footer .Cntr a:hover {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: .2s linear;
+  transition: 0.2s linear;
 }
-
 
 .containeer .image-container .image:hover img {
   transform: scale(1.1);
@@ -1530,7 +1483,7 @@ footer .Cntr a:hover {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, .9);
+  background: rgba(0, 0, 0, 0.9);
   height: 100%;
   width: 100%;
   z-index: 100;
@@ -1570,7 +1523,7 @@ footer .Cntr a:hover {
   object-fit: cover;
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .container .popup-image img {
     width: 95px;
   }
