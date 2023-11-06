@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/Loader.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Announcement</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Acme&family=Clicker+Script&family=Poppins:wght@200;300;500;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(228, 230, 227);
+            background-image: url(../img/bg-8.jpg);
+            box-sizing: border-box;
+        }
+
+        .container {
+
+            position: relative;
+            width: 500px;
+            height: 100px;
+            margin: 50px auto;
+        }
+
+        .container .box {
+            position: relative;
+            width: 400px;
+            height: 160px;
+            padding-left: 23px;
+            background: white;
+            float: left;
+            margin: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 5px 8px 6px 1px black;
+        }
+
+        .container .box .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ff0;
+            transition: .5s;
+            z-index: 1;
+        }
+
+        img {
+            height: 20px;
+            width: 20px;
+            position: relative;
+            left: 92px;
+            top: 3px;
+        }
+
+        .butt {
+            display: block;
+            background: #e0e0e0;
+            left: 100px;
+            top: 30px;
+            height: 30px;
+            width: 93%;
+            font-size: 20px;
+            font-weight: bolder;
+            padding: 3px 0;
+            text-decoration: none;
+            color: black;
+            /* border: 2px solid black; */
+        }
+
+        .btn {
+            left: 321px;
+            position: relative;
+            bottom: 113px;
+            font-size: 18px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        span {
+            margin-left: 98px;
+        }
+
+        .btn-circle.btn-xl {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            border-radius: 35px;
+            font-size: 24px;
+            line-height: 1.33;
+        }
+
+
+        .my-button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 5px;
+            font-size: 31px;
+            height: 90px;
+            width: 90px;
+            box-shadow: 0 2px 4px darkslategray;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: fixed;
+            bottom: 15px;
+            right: 10px;
+        }
+
+        .my-button:active {
+            background-color: #48abe0;
+            box-shadow: 0 0 2px darkslategray;
+            transform: translateY(2px);
+        }
+
+        .round-6 {
+            border-radius: 70%;
+        }
+
+        .heading {
+            margin-top: 50px;
+            color: white;
+            margin-left: 38rem;
+            font-size: 60px;
+            font-family: 'Acme', sans-serif;
+        }
+
+        .accessory {
+            width: 45%;
+            height: 6px;
+            background-image: radial-gradient(closest-side, hsla(0, 0%, 50%, 1.0), hsla(0, 0%, 50%, 0) 100%);
+            position: relative;
+            bottom: 18px;
+            right: 39px;
+        }
+
+        .accessory:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            background-color: hsl(0, 0%, 75%);
+            height: 12px;
+            width: 12px;
+            transform: rotate(45deg);
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 4px 0;
+            border: 4px solid hsla(0, 0%, 100%, 0.35);
+            background-clip: padding-box;
+            box-shadow: -10px 10px 0 hsla(0, 0%, 100%, 0.15), 10px -10px 0 hsla(0, 0%, 100%, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="heading">Announcements</h1>
+    <hr class="accessory">
+    <form action="/file" method="get">
+        <button type="submit" class="round-6 my-button"><i style="font-size: 45px;"
+                class="fa-solid fa-plus"></i></button>
+    </form>
+
+    <% for(let i=0;i<files.length;i++){ %>
+        <% if(founded[i]) { %>
+            <div class="container">
+                <div class="box">
+                    <div class="content">
+                        <h2>
+                            <%=founded[i].name_event%>
+                        </h2>
+                        <h3>
+                            <%=founded[i].date_event%>
+                        </h3>
+                        <a class="butt" href="pdf/<%=files[i].filename%>"><img style="font-size: 20px;"
+                                src="img/icon.png" id="i"><span>Open PDF</span></a>
+                        <form method="post" action="/delete/<%= files[i]._id %>_<%=founded[i]._id%>">
+                            <% if(islogin){ %>
+                                <button class="btn" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+                <% } %>
+                    <div id="loader-wrapper">
+                        <div id="loader"></div>
+                        <div class="loader-section section-left"></div>
+                        <div class="loader-section section-right"></div>
+                    </div>
+                    <script>
+                        window.onload = function () {
+                            document.body.classList.add('loaded');
+                        };
+                    </script>
+</body>
+
+</html>

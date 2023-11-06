@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/file.css" />
+    <link rel="stylesheet" href="css/Loader.css">
+</head>
+
+<body class="">
+    <div class="frame">
+        <div class="center">
+            <div class="title">
+                <h1>Drop file to upload</h1>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input name="name" type="text" value="Enter event name">
+                    <input name="date" type="date">
+                    <img class="img" src="img/upload.jpg" alt="">
+                    <input class="choose" name="file" type="file">
+                    <button class="btn" type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</body>
+
+</html>
