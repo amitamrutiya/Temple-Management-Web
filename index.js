@@ -32,7 +32,7 @@ app.use(
 );
 app.use(cookieParser());
 
-const mongouri = process.env.MONGO_URI;
+const mongouri = process.env.MONGO_URL;
 
 try {
   mongoose.connect(mongouri).then(() => {
