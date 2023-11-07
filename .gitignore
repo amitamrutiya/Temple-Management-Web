@@ -2,3 +2,5 @@
 .env
 package-lock.json
 /public/uploads
+# Local Netlify folder
+.netlify
