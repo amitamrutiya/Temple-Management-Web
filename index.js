@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 const multer = require("multer");
+const serverless = require("serverless-http");
 
 //Middlewares
 app.use(express.static("public"));
@@ -345,3 +346,5 @@ app.get("/file", function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server has started successfully");
 });
+
+module.exports.handler = serverless(app);
