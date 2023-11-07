@@ -24,7 +24,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "public/views"));
+app.set("views", path.join(__dirname, "../public/views"));
 
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(
@@ -352,5 +352,4 @@ app.listen(process.env.PORT || 3000, function () {
 });
 
 app.use("/.netlify/functions/index", router);
-
 module.exports.handler = serverless(app);

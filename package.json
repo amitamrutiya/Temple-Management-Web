@@ -2,9 +2,9 @@
   "name": "project-1",
   "version": "1.0.0",
   "description": "Creating a website for GSFC temple",
-  "main": "index.js",
+  "main": "functions/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "build": "netlify deploy --prod"
