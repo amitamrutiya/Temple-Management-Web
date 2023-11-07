@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
@@ -9,6 +10,8 @@ const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 const multer = require("multer");
 const serverless = require("serverless-http");
+
+const router = express.Router();
 
 //Middlewares
 app.use(express.static("public"));
@@ -21,6 +24,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "public/views"));
 
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(
@@ -346,5 +350,7 @@ app.get("/file", function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server has started successfully");
 });
+
+app.use("/.netlify/functions/index", router);
 
 module.exports.handler = serverless(app);
