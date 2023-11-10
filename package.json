@@ -2,7 +2,7 @@
   "name": "project-1",
   "version": "1.0.0",
   "description": "Creating a website for GSFC temple",
-  "main": "functions/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,8 +25,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^8.0.0",
     "multer": "^1.4.4",
-    "nodemailer": "^6.7.8",
-    "serverless-http": "^3.2.0"
+    "nodemailer": "^6.7.8"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
