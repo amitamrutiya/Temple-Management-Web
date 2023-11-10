@@ -86,8 +86,8 @@ const itemSchema = {
   pdf_path: String,
 };
 
+const Item = mongoose.model("Item", itemSchema);
 app.post("/upload", upload.single("file"), (req, res) => {
-  const Item = mongoose.model("Item", itemSchema);
   const item1 = new Item({
     name_event: req.body.name,
     date_event: req.body.date,
@@ -103,7 +103,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
 let session;
 
 app.get("/announcement", (req, res) => {
-  const Item = mongoose.model("Item", itemSchema);
   Item.find({})
     .then((docs) => {
       session = req.session;
