@@ -11,10 +11,7 @@
   },
   "author": "Amit Amrutiya",
   "license": "ISC",
-  "engines": {
-    "node": "20.2.0",
-    "npm": "9.6.6"
-  },
+  "engines": { node: 'v18.18.2', npm: '9.8.1' },
   "dependencies": {
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
