@@ -1,84 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Pooja Booking</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="../css/booking.css" />
-    <meta name="robots" content="noindex, follow">
-</head>
+    <meta name="robots" content="noindex, follow" />
+  </head>
 
-<body>
+  <body>
     <div id="booking" class="section">
-        <div class="section-center">
-            <div class="container">
+      <div class="section-center">
+        <div class="container">
+          <div class="row">
+            <div class="booking-form">
+              <div class="form-header">
+                <h1>Book Pooja</h1>
+              </div>
+              <form
+                class="main-form"
+                action="/booking"
+                method="post"
+                autocomplete="off"
+              >
                 <div class="row">
-                    <div class="booking-form">
-                        <div class="form-header">
-                            <h1>Book Pooja</h1>
-                        </div>
-                        <form class="main-form" action="/booking" method="post" autocomplete="off">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Name</span>
-                                        <input class="form-control" name="name" type="text"
-                                            placeholder="Enter your name" required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Email</span>
-                                        <input class="form-control" name="email" type="email"
-                                            placeholder="Enter your email" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Phone</span>
-                                <input class="form-control" name="phoneNumber" type="number" pattern="[0-9]{10}"
-                                    placeholder="Enter your phone number" required
-                                    oninput="validity.valid||(value='');">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Select Date</span>
-                                        <input class="form-control" name="date" type="date" required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Select Time</span>
-                                        <input class="form-control" name="time" type="time" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Name of Pooja</span>
-                                <input class="form-control" type="text" name="pooja" placeholder="Enter pooja name"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Description of Pooja</span>
-                                <textarea class="form-control" rows="3" name="description"
-                                    placeholder="Enter detail description" required></textarea>
-                            </div>
-                            <div class="form-btn">
-                                <button class="submit-btn">Book Now</button>
-                            </div>
-                        </form>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Name</span>
+                      <input
+                        class="form-control"
+                        name="name"
+                        type="text"
+                        placeholder="Enter your name"
+                        required
+                      />
                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Email</span>
+                      <input
+                        class="form-control"
+                        name="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
+                <div class="form-group">
+                  <span class="form-label">Phone</span>
+                  <input
+                    class="form-control"
+                    name="phoneNumber"
+                    type="number"
+                    pattern="[0-9]{10}"
+                    placeholder="Enter your phone number"
+                    required
+                    oninput="validity.valid||(value='');"
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Select Date</span>
+                      <input
+                        class="form-control"
+                        name="date"
+                        type="date"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <span class="form-label">Select Time</span>
+                      <input
+                        class="form-control"
+                        name="time"
+                        type="time"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <span class="form-label">Name of Pooja</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="pooja"
+                    placeholder="Enter pooja name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <span class="form-label">Description of Pooja</span>
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    name="description"
+                    placeholder="Enter detail description"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-btn">
+                  <button class="submit-btn">Book Now</button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

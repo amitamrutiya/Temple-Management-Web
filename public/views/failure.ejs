@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Failure</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/pdf.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Failure</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/pdf.css">
-  <link rel="stylesheet" href="css/loader.css">
-</head>
-
-<body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">uh oh!</h1>
-      <p class="lead">Inncorrect password !, Please try again.</p>
-      <form action="/file" method="get">
-        <button class="btn btn-lg btn-warning" type="submit">Try Again</button>
-      </form>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">uh oh!</h1>
+        <p class="lead">Inncorrect password !, Please try again.</p>
+        <form action="/file" method="get">
+          <button class="btn btn-lg btn-warning" type="submit">
+            Try Again
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <div id="loader-wrapper">
-    <div id="loader"></div>
+    <div id="loader-wrapper">
+      <div id="loader"></div>
 
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-
-  </div>
-  <script>
-    window.onload = function () {
-      document.body.classList.add('loaded');
-    };
-  </script>
-</body>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <script>
+      window.onload = function () {
+        document.body.classList.add("loaded");
+      };
+    </script>
+  </body>
 </html>
