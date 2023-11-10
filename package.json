@@ -7,7 +7,7 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "build": "netlify deploy --prod"
+    "build": "babel src -d dist"
   },
   "author": "Amit Amrutiya",
   "license": "ISC",
@@ -29,7 +29,7 @@
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
-    "netlify-cli": "^17.0.1",
-    "netlify-lambda": "^2.0.16"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
