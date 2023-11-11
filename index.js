@@ -36,16 +36,16 @@ app.use(cookieParser());
 
 const mongouri = process.env.MONGO_URL;
 
-try {
-  mongoose.connect(mongouri).then(() => {
-    console.log("Connected to MongoDB");
-  });
-} catch (error) {
-  handleError(error);
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 }
-process.on("unhandledRejection", (error) => {
-  console.log("unhandledRejection", error.message);
-});
 
 app.use(express.json());
 app.use(
@@ -344,6 +344,8 @@ app.get("/file", function (req, res) {
   }
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Server has started successfully");
-});
+connectDB().then(() => {
+  app.listen(PORT, () => {
+      console.log("listening for requests");
+  })
+})
