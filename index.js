@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const sessions = require("express-session");
 const multer = require("multer");
 
 //Middlewares
@@ -22,20 +21,7 @@ app.use(
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./public/views"));
-
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(
-  sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay },
-    resave: false,
-  })
-);
 app.use(cookieParser());
-
-const mongouri = process.env.MONGO_URL;
-
 
 const connectDB = async () => {
   try {
@@ -45,7 +31,7 @@ const connectDB = async () => {
     console.log(error);
     process.exit(1);
   }
-}
+};
 
 app.use(express.json());
 app.use(
@@ -100,16 +86,14 @@ app.post("/upload", upload.single("file"), (req, res) => {
   res.render("file_uploaded_succ");
 });
 
-let session;
-
-app.get("/announcement", async (req, res) => {
-  session = req.session;
-  if (session.userid) {
-        const docs = await Item.find({});
-        res.render("pdf", { files: docs, islogin: true });
-      } else {
-        res.render("login");
-      }
+app.get("/announcement", (req, res) => {
+  Item.find({}).then((docs) => {
+    if (req.cookies.email) {
+      res.render("pdf", { files: docs, islogin: true });
+    } else {
+      res.render("pdf", { files: docs, islogin: false });
+    }
+  });
 });
 
 app.post("/delete/:id", (req, res) => {
@@ -130,26 +114,30 @@ app.post("/login", (req, res) => {
   let email_id = req.body.email;
 
   if (
-    email_id == process.env.TEMPLE_MAIL_ID &&
-    password == process.env.TEMPLE_MAIL_PASS
+    email_id === process.env.TEMPLE_MAIL_ID &&
+    password === process.env.TEMPLE_MAIL_PASS
   ) {
-    session = req.session;
-    session.userid = email_id;
-    res.redirect("/");
-  } else {
-    res.render("failure");
+    try {
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.cookie("email", email_id, options);
+      res.redirect("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
 app.get("/logout", (req, res) => {
-  req.session.destroy();
+  res.clearCookie("email");
   res.redirect("/");
 });
 
 app.get("/", function (req, res) {
-  session = req.session;
   let date = new Date().getFullYear();
-  if (session.userid) {
+  if (req.cookies.email) {
     res.render("index", { islogin: false, date: date });
   } else {
     res.render("index", { islogin: true, date: date });
@@ -332,8 +320,7 @@ app.post("/", function (req, res) {
 });
 
 app.get("/file", function (req, res) {
-  session = req.session;
-  if (session.userid) {
+  if (req.cookies.email) {
     res.render("file");
   } else {
     res.render("login");
@@ -342,6 +329,6 @@ app.get("/file", function (req, res) {
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 3000, () => {
-      console.log("listening for requests on");
-  })
-})
+    console.log("listening for requests on");
+  });
+});
