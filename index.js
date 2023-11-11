@@ -102,19 +102,14 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 let session;
 
-app.get("/announcement", (req, res) => {
-  Item.find({})
-    .then((docs) => {
-      session = req.session;
-      if (session.userid) {
+app.get("/announcement", async (req, res) => {
+  session = req.session;
+  if (session.userid) {
+        const docs = await Item.find({});
         res.render("pdf", { files: docs, islogin: true });
       } else {
-        res.render("pdf", { files: docs, islogin: false });
+        res.render("login");
       }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });
 
 app.post("/delete/:id", (req, res) => {
@@ -168,6 +163,7 @@ app.get("/donation", function (req, res) {
 app.get("/booking", function (req, res) {
   res.render("booking");
 });
+
 app.post("/booking", function (req, res) {
   const poojaBookingSchema = {
     name: String,
