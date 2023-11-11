@@ -58,9 +58,8 @@ The GSFC Temple Management System is a web application designed to streamline th
 7. **Access the application:**
     Open your web browser and go to [http://localhost:3000](http://localhost:3000) or the specified port.
 
-Enjoy exploring the GSFC Temple Management System!
-
-
+Enjoy exploring the GSFC Temple Management System! 🥳💃🎉
+<br/>
 
 ## Contribution Guidelines
 
