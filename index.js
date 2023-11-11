@@ -345,7 +345,7 @@ app.get("/file", function (req, res) {
 });
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
-      console.log("listening for requests");
+  app.listen(process.env.PORT || 3000, () => {
+      console.log("listening for requests on");
   })
 })
