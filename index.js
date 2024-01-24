@@ -89,9 +89,9 @@ app.post("/upload", upload.single("file"), (req, res) => {
 app.get("/announcement", (req, res) => {
   Item.find({}).then((docs) => {
     if (req.cookies.email) {
-      res.render("pdf", { files: docs, islogin: true });
+      res.render("announcement", { files: docs, islogin: true });
     } else {
-      res.render("pdf", { files: docs, islogin: false });
+      res.render("announcement", { files: docs, islogin: false });
     }
   });
 });
@@ -329,6 +329,6 @@ app.get("/file", function (req, res) {
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 3000, () => {
-    console.log("listening for requests on");
+    console.log("listening for requests o " + process.env.PORT || 3000);
   });
 });
