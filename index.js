@@ -23,17 +23,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
 app.use(cookieParser());
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URL);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-
-app.use(express.json());
 app.use(
   express.urlencoded({
     extended: false,
@@ -326,6 +315,16 @@ app.get("/file", function (req, res) {
     res.render("login");
   }
 });
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
+    console.log(`MongoDB Connected`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 3000, () => {
