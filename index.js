@@ -20,7 +20,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "./public/views"));
+app.set("views", path.join(__dirname, "./views"));
 app.use(cookieParser());
 
 const connectDB = async () => {
@@ -329,6 +329,6 @@ app.get("/file", function (req, res) {
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 3000, () => {
-    console.log("listening for requests o " + process.env.PORT || 3000);
+    console.log("listening for port: " + process.env.PORT || 3000);
   });
 });
