@@ -412,9 +412,9 @@ header.smaller .site-logo h1 a {
   float: left;
   padding: 0px;
   margin: 0px;
-  height: 105px;
+  height: 95px;
   position: relative;
-  left: 50px;
+  /* left: 50px; */
   transition: all 0.3s ease;
 }
 
