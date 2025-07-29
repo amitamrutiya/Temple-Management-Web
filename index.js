@@ -8,6 +8,7 @@ const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
+const job = require("./cron.js");
 
 //Middlewares
 app.use(express.static("public"));
@@ -28,6 +29,8 @@ app.use(
     extended: false,
   })
 );
+
+job.start();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
